@@ -1,33 +1,41 @@
-import express, {Request, Response} from 'express';
-import {body, validationResult} from 'express-validator'
-import { DatabaseConnectionError } from '../errors/database-validation-errors';
-import { RequestValidationError } from '../errors/request-validation-errors';
+import express, { Request, Response } from "express";
+import { body, validationResult } from "express-validator";
+import { BadRequestError } from "../errors/bad-request";
+import { RequestValidationError } from "../errors/request-validation-errors";
+import { User } from "../models/user";
 
 const router = express.Router();
 
-router.post('/api/users/signup', 
+router.post(
+    "/api/users/signup",
     [
-        body('email')
-        .isEmail()
-        .withMessage('Please provide a valid email'),
-        body('password')
-        .trim()
-        .isLength({min: 6, max: 20})
-        .withMessage('Password must be between 6 and 20 characters')
-    ], 
-    (req: Request, res: Response) => {
- 
-    const errors = validationResult(req);
-    if(!errors.isEmpty()){
-        throw new RequestValidationError(errors.array())
+        body("email").isEmail().withMessage("Please provide a valid email"),
+        body("password")
+            .trim()
+            .isLength({ min: 4, max: 10 })
+            .withMessage("password must be between 4 and 10 characters"),
+    ],
+    async (req: Request, res: Response) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            throw new RequestValidationError(errors.array());
+        }
+        const { email, password } = req.body;
+
+        const existingUser = await User.findOne({email});
+
+        if (existingUser) {
+            // console.log("Email already in use");
+            // res.send({});
+            throw new BadRequestError('Email already in use!')
+        }
+
+        const user = User.build({ email, password });
+
+        await user.save();
+
+        res.status(201).send(user);
     }
-    const {email, password} = req.body
+);
 
-    console.log('creating a user');
-    throw new DatabaseConnectionError()
-
-    res.send({})
-    
-})
-
-export {router as signupRouter}
+export { router as signupRouter };

@@ -5,8 +5,6 @@ deploy:
     manifests:
       - ./infra/k8s/*
 build:
-  local:
-    push: false
   artifacts:
     - image: sammykirigha/auth
       context: auth
@@ -16,3 +14,11 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: sammykirigha/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .        

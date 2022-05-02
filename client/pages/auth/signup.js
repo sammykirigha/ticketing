@@ -1,14 +1,23 @@
 import { useState } from "react";
+import Router from 'next/router'
+import useRequest from "../../hooks/use-request";
 
 export default () => {
     const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	
-	const onSubmit = (event) => {
-		event.preventDefault()
+    const [password, setPassword] = useState("");
+    const { doRequest, errors } = useRequest({
+        url: "/api/users/signup",
+        method: "method",
+		body: { email, password },
+		onSuccess: () => Router.push('/')
+    });
 
+    const onSubmit = async (event) => {
+        event.preventDefault();
+		// await doRequest();
 		console.log(email, password);
-	}
+		
+    };
 
     return (
         <form onSubmit={onSubmit}>
@@ -31,6 +40,7 @@ export default () => {
                     className="form-control"
                 />
             </div>
+            {errors}
             <button type="submit" className="btn btn-primary">
                 Sign Up
             </button>

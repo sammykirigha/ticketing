@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 
 export default ({ url, method, body }) => {
-    const [errors, setErrors] = useState(null);
+    const [errors, setErrors, onSuccess] = useState(null);
 
     const doRequest = async () => {
         try {
@@ -15,16 +15,7 @@ export default ({ url, method, body }) => {
             return response.data;
         } catch (err) {
             setErrors(err.response.data.errors)
-            // setErrors(
-            //     <div className="alert alert-danger">
-            //         <h4>Ooops....</h4>
-            //         <ul className="my-0">
-            //             {err.response.data.errors.map((err) => (
-            //                 <li key={err.message}>{err.message}</li>
-            //             ))}
-            //         </ul>
-            //     </div>
-            // );
+            throw err;
         }
     };
 

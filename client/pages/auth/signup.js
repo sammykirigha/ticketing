@@ -8,23 +8,14 @@ export default () => {
     const { doRequest, errors } = useRequest({
         url: "/api/users/signup",
         method: "post",
-		body: { email, password },
-		onSuccess: () => Router.push('/')
+		body: { email, password }
+		// onSuccess: () => Router.push('/')
     });
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        // try {
-        //      const response = await axios.post('/api/users/signup', {
-        //     email, password
-        //      });
-        //     return response.data
-        // } catch (err) {
-        //     console.log(err.response.data.errors);
-        //     setErrors(err.response.data.errors)
-        // }
-
-		await doRequest();
+        await doRequest();
+        Router.push('/')
     };
 
     return (
@@ -39,7 +30,7 @@ export default () => {
                     className="form-control"
                 />
             </div>
-            {errors?.length && errors?.map(err => err.field === 'email' ? <div className="alert alert-danger">
+            {errors?.length > 0 && errors?.map(err => err.field === 'email' ? <div className="alert alert-danger">
                 {/* <ul className="my-0"> */}
                     <span className="my-0" key={err.message}>{err.message}</span>
                 {/* </ul> */}
@@ -53,7 +44,7 @@ export default () => {
                     className="form-control"
                 />
             </div>
-            {errors?.length && errors?.map(err => err.field === 'password' ? <div className="alert alert-danger">
+            {errors?.length > 0 && errors?.map(err => err.field === 'password' ? <div className="alert alert-danger">
                 {/* <ul className="my-0"> */}
                     <span className="my-0" key={err.message}>{err.message}</span>
                 {/* </ul> */}

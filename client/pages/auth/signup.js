@@ -1,33 +1,30 @@
 import { useState } from "react";
-import axios from "axios"
-import Router from 'next/router'
-// import useRequest from "../../hooks/use-request";
+import Router from 'next/router';
+import useRequest from "../../hooks/use-request";
 
 export default () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [errors, setErrors] = useState([])
-    // const { doRequest, errors } = useRequest({
-    //     url: "/api/users/signup",
-    //     method: "method",
-	// 	body: { email, password },
-	// 	onSuccess: () => Router.push('/')
-    // });
+    const { doRequest, errors } = useRequest({
+        url: "/api/users/signup",
+        method: "post",
+		body: { email, password },
+		onSuccess: () => Router.push('/')
+    });
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        try {
-             const response = await axios.post('/api/users/signup', {
-            email, password
-             });
-            return response.data
-        } catch (err) {
-            console.log(err.response.data.errors);
-            setErrors(err.response.data.errors)
-        }
+        // try {
+        //      const response = await axios.post('/api/users/signup', {
+        //     email, password
+        //      });
+        //     return response.data
+        // } catch (err) {
+        //     console.log(err.response.data.errors);
+        //     setErrors(err.response.data.errors)
+        // }
 
-		// await doRequest();
-		
+		await doRequest();
     };
 
     return (
@@ -42,10 +39,10 @@ export default () => {
                     className="form-control"
                 />
             </div>
-            {errors.length > 0 && errors.map(err => err.field === 'email' ? <div className="alert alert-danger">
-                <ul className="my-0">
-                    <li key={err.message}>{err.message}</li>
-                </ul>
+            {errors?.length && errors?.map(err => err.field === 'email' ? <div className="alert alert-danger">
+                {/* <ul className="my-0"> */}
+                    <span className="my-0" key={err.message}>{err.message}</span>
+                {/* </ul> */}
             </div>: null)}
             <div className="form-group">
                 <label>Password</label>
@@ -56,18 +53,11 @@ export default () => {
                     className="form-control"
                 />
             </div>
-            {errors.length > 0 && errors.map(err => err.field === 'password' ? <div className="alert alert-danger">
-                <ul className="my-0">
-                    <li key={err.message}>{err.message}</li>
-                </ul>
+            {errors?.length && errors?.map(err => err.field === 'password' ? <div className="alert alert-danger">
+                {/* <ul className="my-0"> */}
+                    <span className="my-0" key={err.message}>{err.message}</span>
+                {/* </ul> */}
             </div>: null)}
-            {/* <div className="alert alert-danger">
-                <h6>Oooops....</h6>
-                <ul className="my-0">
-                    {errors.map(err => <li key={err.message}>{err.message}</li> )}
-                </ul>
-            </div> */}
-            
             <button type="submit" className="btn btn-primary">
                 Sign Up
             </button>

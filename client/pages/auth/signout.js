@@ -10,7 +10,7 @@ export default () => {
 	})
 
 	useEffect(() => {
-		doRequest();
+		 doRequest();
 		Router.push("/");
 	})
 

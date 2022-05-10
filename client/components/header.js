@@ -23,7 +23,7 @@ export default ({ currentUser }) => {
             );
         });
     return (
-        <nav className="navbar navbar-light bg-light">
+        <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800 flex items-center justify-between">
             <Link href="/">
                 <a>
                     <img
@@ -35,7 +35,7 @@ export default ({ currentUser }) => {
                 </a>
             </Link>
             <div className="d-flex justify-content-end">
-                <ul className="nav d-flex align-items-center">{links}</ul>
+                <ul className="text-blue-500 text-xl font-bold px-3">{links}</ul>
             </div>
         </nav>
     );

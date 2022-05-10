@@ -20,11 +20,11 @@ export default () => {
     };
 
     return (
-        <div className="grid grid-cols-2">
-            <div className="bg-gradient-to-r from-indigo-500 to-sky-500  flex justify-center h-full py-8 px-8">
+        <div className="grid grid-cols-2 h-screen">
+            <div className="bg-gradient-to-r from-violet-500 to-fuchsia-400  flex justify-center py-8 px-8">
                 <div className="block p-6 rounded-lg shadow-lg bg-white w-full">
                     <form onSubmit={onSubmit}>
-                        <h3 className="text-gray-900 pb-3">Sign In</h3>
+                        <h3 className="text-gray-700 pb-3 text-2xl font-bold">Sign In</h3>
                         <div className="form-group mb-6">
                             <label className="form-label inline-block mb-2 text-gray-700">
                                 Email Address
@@ -49,7 +49,7 @@ export default () => {
                                 rounded transition
                                 ease-in-out
                                 m-0
-                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+                                focus:text-gray-700 focus:bg-white focus:border-violet-500 focus:outline-none
                                 "
                                 id="inputBox"
                                 aria-describedby="emailHelp"
@@ -90,7 +90,7 @@ export default () => {
                                 rounded transition
                                 ease-in-out
                                 m-0
-                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+                                focus:text-gray-700 focus:bg-white focus:border-violet-500 focus:outline-none
                                 "
                                 id="passwordInput"
                                 aria-describedby="passHelp"
@@ -119,14 +119,14 @@ export default () => {
                             <div className="form-group form-check">
                                 <input
                                     type="checkbox" value="" id="flexCheckDefault"
-                                    className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                    className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-violet-500 checked:border-violet-500 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                 />
                                 <label className="form-check-label inline-block text-gray-800" for="flexCheckDefault">
                                     Remember me
                                 </label>
                             </div>
                             <Link href="#">
-                                <a className="text-blue-600 hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out">
+                                <a className="text-violet-500 hover:text-violet-700 focus:text-violet-700 transition duration-200 ease-in-out">
                                     Forgot Password?
                                 </a>
                             </Link>
@@ -137,7 +137,7 @@ export default () => {
                             w-full
                             px-6
                             py-2.5
-                            bg-blue-600
+                            bg-gradient-to-r from-violet-500 to-fuchsia-400
                             text-white
                             font-medium
                             text-xs
@@ -145,9 +145,9 @@ export default () => {
                             uppercase
                             rounded
                             shadow-md
-                            hover:bg-blue-700 hover:shadow-lg
-                            focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-                            active:bg-blue-800 active:shadow-lg
+                            hover:fuchsia-600 hover:shadow-lg
+                            focus:fuchsia-500 focus:shadow-lg focus:outline-none focus:ring-0
+                            active:fuchsia-700 active:shadow-lg
                             transition
                             duration-150
                         "
@@ -157,7 +157,7 @@ export default () => {
                         <p class="text-gray-800 mt-6 text-center">
                             Don't have account?{" "}
                             <Link href="#!">
-                                <a class="text-blue-600 hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out">
+                                <a class="text-violet-500 hover:text-violet-500 focus:text-violet-500 transition duration-200 ease-in-out">
                                     Register
                                 </a>
                             </Link>
@@ -165,7 +165,16 @@ export default () => {
                     </form>
                 </div>
             </div>
-            <div className="bg-[url('../../assets/background2.jpeg')] h-full">image</div>
+            <div className="bg-[url('../../assets/background2.jpeg')] bg-cover flex justify-center">
+                <div className="flex flex-col items-center justify-center h-screen pl-3">
+                    <h2 className="text-white text-2xl font-bold px-3">Special Events</h2>
+                    <p className="text-white pl-12 text-xl">
+                        We combine years of experience and technical experience with a passion for theatre and concert touring.
+                        Our huge state-of-the-art range covers lighting, sound and video to staging, power, rigging and drapes, ensuring we’re the perfect partner to supply kit for any kind of event.
+                        Login to book your ticket to our varius events
+                    </p>
+                </div>
+            </div>
         </div>
     );
 };

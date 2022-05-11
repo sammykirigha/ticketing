@@ -5,7 +5,8 @@ import { requireAuth, validateRequest } from '@sdktickets/sammy';
 const router = express.Router();
 
 router.post('/api/tickets', requireAuth, [
-	body('title').not().isEmpty().withMessage('Title is required')
+	body('title').not().isEmpty().withMessage('Title is required'),
+	body('price').isFloat({gt: 0}).withMessage('price is requiredand is greater than zero')
 ], validateRequest, (req: Request, res: Response) => {
 	res.sendStatus(200);
 })

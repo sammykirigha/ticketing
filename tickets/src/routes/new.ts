@@ -1,9 +1,12 @@
 import express, { Request, Response } from 'express';
-import { requireAuth } from '@sdktickets/sammy';
+import {body} from 'express-validator'
+import { requireAuth, validateRequest } from '@sdktickets/sammy';
 
 const router = express.Router();
 
-router.post('/api/tickets', requireAuth, (req: Request, res: Response) => {
+router.post('/api/tickets', requireAuth, [
+	body('title').not().isEmpty().withMessage('Title is required')
+], validateRequest, (req: Request, res: Response) => {
 	res.sendStatus(200);
 })
 

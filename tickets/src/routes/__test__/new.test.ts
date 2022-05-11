@@ -10,7 +10,7 @@ it('it has a router handler listening to /api/tickets for post request', async (
 
 it('it can be accessed if the user is signed in', async () => {
 
-	const response = await request(app).post('/api/tickets').send({})
+	const response = await request(app).post('/api/tickets').set('Cookie', global.signin()).send({})
 	expect(response.status).toEqual(401)
 })
 

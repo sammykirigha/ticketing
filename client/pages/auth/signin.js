@@ -20,9 +20,9 @@ export default () => {
     };
 
     return (
-        <div className="grid grid-cols-2 h-screen">
-            <div className="bg-gradient-to-r from-violet-500 to-fuchsia-400  flex justify-center py-8 px-8">
-                <div className="block p-6 rounded-lg shadow-lg bg-white w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 h-[90vh] ">
+            <div className="bg-gradient-to-r order-2 lg:!order-1 from-violet-500 to-fuchsia-400  flex items-center justify-center py-8 px-8">
+                <div className="block p-6 rounded-lg shadow-lg bg-white max-w-2xl w-full">
                     <form onSubmit={onSubmit}>
                         <h3 className="text-gray-700 pb-3 text-2xl font-bold">Sign In</h3>
                         <div className="form-group mb-6">
@@ -108,7 +108,7 @@ export default () => {
                                 ) : null
                             )}
                         {errors?.length > 0 &&
-                            errors?.map((err, index) => (
+                            errors?.map((err, index) => err.field !== "password" && (
                                 <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
                                     <span className="mb-2" key={index}>
                                         {err.message}
@@ -156,7 +156,7 @@ export default () => {
                         </button>
                         <p class="text-gray-800 mt-6 text-center">
                             Don't have account?{" "}
-                            <Link href="#!">
+                            <Link href="/auth/signup">
                                 <a class="text-violet-500 hover:text-violet-500 focus:text-violet-500 transition duration-200 ease-in-out">
                                     Register
                                 </a>
@@ -165,12 +165,12 @@ export default () => {
                     </form>
                 </div>
             </div>
-            <div className="bg-[url('../../assets/background2.jpeg')] bg-cover flex justify-center">
-                <div className="flex flex-col items-center justify-center h-screen pl-3">
+            <div className="bg-[url('../../assets/background2.jpeg')] bg-cover order-1 lg:order-2 flex justify-center">
+                <div className="flex flex-col items-center bg-slate-900 bg-opacity-70 justify-center h-[50vh] lg:h-screen px-2">
                     <h2 className="text-white text-2xl font-bold px-3">Special Events</h2>
-                    <p className="text-white pl-12 text-xl">
+                    <p className="text-white bg-slate-300 bg-opacity-25 rounded-sm px-3 text-2xl">
                         We combine years of experience and technical experience with a passion for theatre and concert touring.
-                        Our huge state-of-the-art range covers lighting, sound and video to staging, power, rigging and drapes, ensuring we’re the perfect partner to supply kit for any kind of event.
+                        Our huge state-of-the-art range covers lighting, sound and video to staging, power, rigging and drapes.
                         Login to book your ticket to our varius events
                     </p>
                 </div>

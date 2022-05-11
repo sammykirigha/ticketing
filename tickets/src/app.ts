@@ -15,7 +15,8 @@ app.use(
         secure: process.env.NODE_ENV !== 'test',
     })
 );
-app.use(currentUser)
+app.use(currentUser);
+
 app.use(createTicketRouter);
 app.all("*", async () => {
     throw new NotFoundError();

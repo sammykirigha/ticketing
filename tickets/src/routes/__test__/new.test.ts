@@ -23,14 +23,14 @@ import { Ticket } from "../../models/tickets";
 // })
 
 
-it('it return an error if an invalid title is provided', async () => {
-	await  request(app).post('/api/tickets').set('Cookie', global.signin()).send({
-		title: '',
-		price: 10
-	})
-	.expect(400)
+// it('it return an error if an invalid title is provided', async () => {
+// 	await  request(app).post('/api/tickets').set('Cookie', global.signin()).send({
+// 		title: '',
+// 		price: 10
+// 	})
+// 	.expect(400)
 
-})
+// })
 
 
 it('it return an error if an invalid price is provided', async () => {

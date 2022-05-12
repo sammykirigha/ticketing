@@ -16,11 +16,11 @@ import { Ticket } from "../../models/tickets";
 // })
 
 
-it('return a status other than 401 if the user is signed in', async () => {
+// it('return a status other than 401 if the user is signed in', async () => {
 
-	const response = await request(app).post('/api/tickets').send({})
-	expect(response.status).not.toEqual(401)
-})
+// 	const response = await request(app).post('/api/tickets').send({})
+// 	expect(response.status).not.toEqual(401)
+// })
 
 
 it('it return an error if an invalid title is provided', async () => {

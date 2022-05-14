@@ -1,13 +1,18 @@
 import nats, { Message } from "node-nats-streaming";
-import {randomBytes} from 'crypto'
+import { randomBytes } from "crypto";
 console.clear();
 
-const stan = nats.connect("ticketing", randomBytes(4).toString('hex'), { url: "http://localhost:4222" });
+const stan = nats.connect("ticketing", randomBytes(4).toString("hex"), {
+    url: "http://localhost:4222",
+});
 
 stan.on("connect", () => {
     console.log("am listening to you guys");
 
-    const subscription = stan.subscribe("ticket:created");
+    const subscription = stan.subscribe(
+        "ticket:created",
+        "orders-service-queue-group"
+    );
 
     subscription.on("message", (msg: Message) => {
         const data = msg.getData();

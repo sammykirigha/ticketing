@@ -12,7 +12,6 @@ export class TicketCreatedListener extends Listener<TicketCreatedEvent> {
 		console.log(`Event data!`, data);
 		
 		
-
         msg.ack()
     }
 }

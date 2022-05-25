@@ -12,8 +12,8 @@ const start = async () => {
     // }
 
     try {
-        await natsWrapper.connect('ticketing', 'sdnjdcfv', 'http://nats-srv:4222')
         await mongoose.connect("mongodb://tickets-mongo-srv:27017/tickets");
+        await natsWrapper.connect('ticketing', 'sammykirigha', 'http://nats-srv:4222')
         natsWrapper.client.on("close", () => {
             console.log("Nats connection is closed");
             process.exit();

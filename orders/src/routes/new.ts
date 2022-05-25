@@ -28,8 +28,18 @@ router.post('/api/orders', requireAuth, [
 	//if we find an order from that means the tickets is reserved
 	
 
-	const isReserved = await ticket.isRerseved()
-		if (isReserved) {
+	const existingOrder = await Order.findOne({
+		ticket: ticket,
+		status: {
+			$in: [
+				OrderStatus.Created,
+				OrderStatus.AwaitingPayment,
+				OrderStatus.Complete
+			]
+		}
+	})
+	// const isReserved = await ticket.isRerseved()
+		if (existingOrder) {
 		throw new BadRequestError('Ticket is already reserved')
 	}
 
@@ -48,7 +58,7 @@ router.post('/api/orders', requireAuth, [
 	})
 	await order.save();
 	//publish an event syaing that an order was created
-	res.send({})
+	res.status(201).send(order)
 })
 
 export { router as createOrderRouter }

@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
-import {OrderStatus} from '@sdktickets/sammy'
+import { OrderStatus } from '@sdktickets/sammy';
+import {TicketDoc} from './ticket'
+
 interface OrderAttrs {
 	userId: string;
 	status: OrderStatus;

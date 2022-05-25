@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
-import { transform } from 'typescript';
 
 interface TicketAttr {
-	title: string;
 	prince: number
 }
 

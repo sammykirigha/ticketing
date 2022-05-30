@@ -16,7 +16,11 @@ router.delete('/api/orders/:orderId', async (req: Request, res: Response) => {
 	if (order.userId !== req.currentUser!.id) {
 		throw new NotAuthorized()
 	}
-	res.send({})
+
+	order.status = OrderStatus.Cancelled;
+	await order.save()
+
+	res.status(204).send(order);
 })
 
 export {router as deleteOrderRouter}

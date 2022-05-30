@@ -1,10 +1,9 @@
 import mongoose from 'mongoose';
 import express, { Request, Response } from 'express';
-import { BadRequestError, NotFoundError, OrderStatus, requireAuth, validateRequest } from '@sdktickets/sammy'
+import { BadRequestError, NotFoundError, OrderStatus, requireAuth, validateRequest } from '@sdktickets/sammy';
 import { body } from 'express-validator';
 import { Ticket } from '../models/ticket';
 import { Order } from '../models/order';
-import moment from 'moment';
 
 const router = express.Router();
 const EXPIRE_WINDOW_SECONDS = 15 * 60 * 1000
@@ -41,16 +40,14 @@ router.post('/api/orders', requireAuth, [
 	})
 	// const isReserved = await ticket.isRerseved()
 		if (existingOrder) {
-		throw new BadRequestError('Ticket is already reserved')
+		throw new BadRequestError('Ticket is already reserved...')
 	}
 
 
 	//Calculate an expiration date for this order
 	const expirationDate = new Date();
 	const numSeconds = expirationDate.getTime() + EXPIRE_WINDOW_SECONDS;
-	const expiringTime = new Date(numSeconds) 
-	const date = moment(expiringTime).format('lll');
-	console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',date)
+	const expiringTime = new Date(numSeconds);
 
 	//Build the order and save it to the database'
 	const order = Order.build({

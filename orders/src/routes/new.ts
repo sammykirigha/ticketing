@@ -4,9 +4,10 @@ import { BadRequestError, NotFoundError, OrderStatus, requireAuth, validateReque
 import { body } from 'express-validator';
 import { Ticket } from '../models/ticket';
 import { Order } from '../models/order';
+import moment from 'moment';
 
 const router = express.Router();
-const EXPIRE_WINDOW_SECONDS = 15 * 60
+const EXPIRE_WINDOW_SECONDS = 15 * 60 * 1000
 
 router.post('/api/orders', requireAuth, [
 	body('ticketId')
@@ -46,8 +47,10 @@ router.post('/api/orders', requireAuth, [
 
 	//Calculate an expiration date for this order
 	const expirationDate = new Date();
-	const numSeconds = expirationDate.getSeconds() + EXPIRE_WINDOW_SECONDS;
+	const numSeconds = expirationDate.getTime() + EXPIRE_WINDOW_SECONDS;
 	const expiringTime = new Date(numSeconds) 
+	const date = moment(expiringTime).format('lll');
+	console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',date)
 
 	//Build the order and save it to the database'
 	const order = Order.build({

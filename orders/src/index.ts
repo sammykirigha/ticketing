@@ -14,6 +14,7 @@ const start = async () => {
     // }
 
     try {
+        
         await natsWrapper.connect('ticketing', 'sammykirigha', 'http://nats-srv:4222')
         natsWrapper.client.on("close", () => {
             console.log("Nats connection is closed");

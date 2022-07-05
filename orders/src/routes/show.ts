@@ -1,5 +1,5 @@
 import express, {Request, Response} from 'express';
-import { NotAuthorized, NotFoundError, requireAuth } from '@sdktickets/sammy';
+import { NotAuthorized, NotFoundError } from '@sdktickets/sammy';
 import { Order } from '../models/order';
 
 const router = express.Router();

@@ -63,6 +63,7 @@ router.post('/api/orders', requireAuth, [
 	new OrderCreatedPublisher(natsWrapper.client).publish({
 		id: order.id,
 		status: order.status,
+		version: order.version,
 		expiresAt: order.expiresAt.toISOString(),
 		userId: order.userId,
 		ticket: {

@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-import {updateIfCurrentPlugin} from 'mongoose-update-if-current'
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
+
 interface TicketAttr {
 	id: string;
 	title: string;
@@ -9,7 +10,7 @@ interface TicketAttr {
 export interface TicketDoc extends mongoose.Document {
 	title: string;
 	price: number;
-	version: number;
+	version: number
 	isRerseved(): Promise<boolean>
 }
 
